@@ -15,15 +15,15 @@ export default function DoctorCard({ doctor }: Props) {
   const router = useRouter();
 
   return (
-    <Card className="p-5 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300">
+    <Card className="p-5 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col">
       {/* Top Section */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-start gap-4">
         <Image
           src={`/doctors/${doctor.id}.jpg`}
           alt={`${doctor.name} profile image`}
-          width={120}
-          height={120}
-          className="rounded-xl object-cover border border-gray-200 shadow-sm"
+          width={100}
+          height={100}
+          className="rounded-xl object-cover border border-gray-200 shadow-sm w-[120px] h-[120px]"
         />
 
         <div className="flex-1">
@@ -46,7 +46,7 @@ export default function DoctorCard({ doctor }: Props) {
       </div>
 
       {/* Middle Section */}
-      <div className="mt-4 space-y-2 text-sm text-gray-600">
+      <div className="mt-4 space-y-2 text-sm text-gray-600 flex-1">
         <p>
           <span className="font-medium">Hospital:</span> {doctor.hospital}
         </p>
@@ -66,13 +66,16 @@ export default function DoctorCard({ doctor }: Props) {
         </p>
       </div>
 
-      {/* Fee Section */}
-      <div className="mt-4 flex justify-between items-center">
+      {/* Fee Section - ALWAYS AT BOTTOM */}
+      <div className="pt-4 flex justify-between items-center border-t mt-auto">
         <span className="text-primary font-semibold text-lg">
           ₹{doctor.consultationFee}
         </span>
 
-        <Button onClick={() => router.push(`/dashboard/doctors/${doctor.id}`)}>
+        <Button
+          className="rounded-xl"
+          onClick={() => router.push(`/dashboard/doctors/${doctor.id}`)}
+        >
           View Details
         </Button>
       </div>
