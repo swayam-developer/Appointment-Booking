@@ -21,7 +21,7 @@ export default function OtpForm() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-semibold">OTP Verification</h2>
+      <h2 className="text-3xl font-semibold text-blue-700">OTP Verification</h2>
 
       <div className="flex justify-between">
         {otp.map((digit, index) => (
@@ -35,7 +35,7 @@ export default function OtpForm() {
         ))}
       </div>
 
-      <Button className="w-full bg-primary" onClick={handleVerify}>
+      <Button className="w-full bg-blue-700 hover:bg-blue-800 text-white transition duration-300" onClick={handleVerify}>
         Verify
       </Button>
     </div>
