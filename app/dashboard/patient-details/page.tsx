@@ -1,96 +1,17 @@
-"use client";
+import PatientDetailsClient from "./PatientDetailsClient";
 
 export const dynamic = "force-dynamic";
 
-import { useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { toast } from "react-toastify";
-
-
-export default function PatientDetailsPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const doctorId = searchParams.get("doctorId");
-  const date = searchParams.get("date");
-  const slot = searchParams.get("slot");
-
-  const [form, setForm] = useState({
-    name: "",
-    age: "",
-    issue: "",
-    firstVisit: "yes",
-  });
-
-  const handleConfirm = () => {
-    const appointment = {
-      doctorId,
-      doctorName: searchParams.get("doctorName"),
-      specialization: searchParams.get("specialization"),
-      date,
-      slot,
-      ...form,
-       status: "Confirmed",
-    };
-
-    localStorage.setItem("appointment", JSON.stringify(appointment));
-
-    toast.success("Appointment booked successfully!");
-
-    setTimeout(() => {
-      router.push("/dashboard/appointments");
-    }, 1500);
+interface Props {
+  searchParams: {
+    doctorId?: string;
+    doctorName?: string;
+    specialization?: string;
+    date?: string;
+    slot?: string;
   };
+}
 
-  return (
-    <div className="max-w-3xl mx-auto p-6 space-y-6">
-      <h1 className="text-2xl font-semibold">Patient Details</h1>
-
-      <div className="bg-white p-6 rounded-2xl shadow space-y-4">
-        <input
-          type="text"
-          placeholder="Full Name"
-          className="w-full border rounded-lg px-4 py-2"
-          onChange={(e) =>
-            setForm({ ...form, name: e.target.value })
-          }
-        />
-
-        <input
-          type="number"
-          placeholder="Age"
-          className="w-full border rounded-lg px-4 py-2"
-          onChange={(e) =>
-            setForm({ ...form, age: e.target.value })
-          }
-        />
-
-        <textarea
-          placeholder="Health Issue"
-          className="w-full border rounded-lg px-4 py-2"
-          onChange={(e) =>
-            setForm({ ...form, issue: e.target.value })
-          }
-        />
-
-        <select
-          className="w-full border rounded-lg px-4 py-2"
-          onChange={(e) =>
-            setForm({ ...form, firstVisit: e.target.value })
-          }
-        >
-          <option value="yes">First Visit</option>
-          <option value="no">Follow-up</option>
-        </select>
-
-        <Button
-          onClick={handleConfirm}
-          className="bg-blue-600 hover:bg-blue-700"
-        >
-          Confirm Appointment
-        </Button>
-      </div>
-    </div>
-  );
+export default function PatientDetailsPage({ searchParams }: Props) {
+  return <PatientDetailsClient searchParams={searchParams} />;
 }
