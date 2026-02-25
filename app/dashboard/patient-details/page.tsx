@@ -1,9 +1,12 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
+
 
 export default function PatientDetailsPage() {
   const router = useRouter();
