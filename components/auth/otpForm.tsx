@@ -69,7 +69,7 @@ export default function OtpForm() {
             key={index}
             maxLength={1}
             value={digit}
-            ref={(el) => (inputsRef.current[index] = el)}
+            ref={(el) => {inputsRef.current[index] = el}}
             onChange={(e) => handleChange(e.target.value, index)}
             className="w-14 h-14 border border-gray-300 rounded-lg text-center text-xl font-semibold 
                        focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
