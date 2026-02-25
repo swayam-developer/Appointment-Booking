@@ -66,7 +66,7 @@ export default function DoctorCard({ doctor }: Props) {
         </p>
       </div>
 
-      {/* Fee Section - ALWAYS AT BOTTOM */}
+      {/* Fee Section */}
       <div className="pt-4 flex justify-between items-center border-t mt-auto">
         <span className="text-primary font-semibold text-lg">
           ₹{doctor.consultationFee}

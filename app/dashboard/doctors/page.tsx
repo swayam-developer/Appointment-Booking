@@ -1,5 +1,5 @@
 import { getAllDoctors } from "@/services/api";
-import DoctorCard from "@/components/common/DoctorCard";
+import DoctorsClient from "./DoctorsClient";
 import { Doctor } from "@/types";
 
 export default async function DoctorsPage() {
@@ -15,11 +15,5 @@ export default async function DoctorsPage() {
     );
   }
 
-  return (
-    <div className="p-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {doctors.map((doctor) => (
-        <DoctorCard key={doctor.id} doctor={doctor} />
-      ))}
-    </div>
-  );
+  return <DoctorsClient doctors={doctors} />;
 }

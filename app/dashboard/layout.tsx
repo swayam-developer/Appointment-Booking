@@ -5,6 +5,9 @@ import { useEffect } from "react";
 import Navbar from "@/components/common/Navbar";
 import Sidebar from "@/components/common/Sidebar";
 import Footer from "@/components/common/Footer";
+import { SearchProvider } from "@/context/SearchContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function DashboardLayout({
   children,
@@ -22,24 +25,23 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen flex bg-gray-50">
+      <SearchProvider>
+        {/* Sidebar */}
+        <Sidebar />
 
-      {/* Sidebar */}
-      <Sidebar />
+        {/* Main Section */}
+        <div className="flex flex-col flex-1">
+          {/* Navbar */}
+          <Navbar />
 
-      {/* Main Section */}
-      <div className="flex flex-col flex-1">
+          {/* Page Content */}
+          <main className="flex-1 p-6">{children}</main>
+          <ToastContainer position="top-right" autoClose={3000} />
 
-        {/* Navbar */}
-        <Navbar />
-
-        {/* Page Content */}
-        <main className="flex-1 p-6">
-          {children}
-        </main>
-
-        {/* Footer */}
-        <Footer />
-      </div>
+          {/* Footer */}
+          <Footer />
+        </div>
+      </SearchProvider>
     </div>
   );
 }

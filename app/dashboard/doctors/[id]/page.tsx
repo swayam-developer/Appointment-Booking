@@ -2,7 +2,7 @@ import { getDoctorById } from "@/services/api";
 import { Doctor } from "@/types";
 import Image from "next/image";
 import { Star, MapPin, Stethoscope } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import BookingSection from "@/components/booking/BookingSection";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -77,28 +77,13 @@ export default async function DoctorDetailPage({ params }: Props) {
       </div>
 
       {/* Slot Booking Section */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm space-y-4">
-        <h2 className="text-lg font-semibold">Available Time Slots</h2>
-
-        <div className="flex flex-wrap gap-3">
-          {doctor.slots?.map((slot, index) => (
-            <button
-              key={index}
-              className="border px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition"
-            >
-              {slot}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex justify-between items-center mt-6">
-          <span className="text-2xl font-semibold text-primary">
-            ₹{doctor.consultationFee}
-          </span>
-
-          <Button>Book Appointment</Button>
-        </div>
-      </div>
+      <BookingSection
+        doctorId={doctor.id}
+        doctorName={doctor.name}
+        specialization={doctor.specialization}
+        slots={doctor.slots || []}
+        fee={doctor.consultationFee}
+      />
     </div>
   );
 }
