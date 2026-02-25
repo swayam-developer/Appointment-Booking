@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { getAllDoctors } from "@/services/api";
 import DoctorsClient from "./DoctorsClient";
 import { Doctor } from "@/types";
@@ -14,6 +15,5 @@ export default async function DoctorsPage() {
       </div>
     );
   }
-
-  return <DoctorsClient doctors={doctors} />;
+  return <DoctorsClient doctors={doctors || []} />;
 }
