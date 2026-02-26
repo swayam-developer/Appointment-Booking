@@ -4,21 +4,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
+import { useBooking } from "@/context/BookingContext";
 
-interface Props {
-  searchParams: {
-    doctorId?: string;
-    doctorName?: string;
-    specialization?: string;
-    date?: string;
-    slot?: string;
-  };
-}
-
-export default function PatientDetailsClient({ searchParams }: Props) {
+export default function PatientDetailsClient() {
   const router = useRouter();
-
-  const { doctorId, doctorName, specialization, date, slot } = searchParams;
+  const { booking } = useBooking();
 
   const [form, setForm] = useState({
     name: "",
@@ -27,14 +17,28 @@ export default function PatientDetailsClient({ searchParams }: Props) {
     firstVisit: "yes",
   });
 
+  if (!booking) {
+    return (
+      <div className="p-6 text-center">
+        <h2 className="text-xl font-semibold">
+          No booking data found.
+        </h2>
+      </div>
+    );
+  }
+
   const handleConfirm = () => {
+    if (!form.name || !form.age || !form.issue) {
+      toast.error("Please fill all fields");
+      return;
+    }
+
     const appointment = {
-      doctorId,
-      doctorName,
-      specialization,
-      date,
-      slot,
-      ...form,
+      ...booking,
+      name: form.name,
+      age: form.age,
+      issue: form.issue,
+      firstVisit: form.firstVisit,
       status: "Confirmed",
     };
 
@@ -56,6 +60,7 @@ export default function PatientDetailsClient({ searchParams }: Props) {
           type="text"
           placeholder="Full Name"
           className="w-full border rounded-lg px-4 py-2"
+          value={form.name}
           onChange={(e) =>
             setForm({ ...form, name: e.target.value })
           }
@@ -65,6 +70,7 @@ export default function PatientDetailsClient({ searchParams }: Props) {
           type="number"
           placeholder="Age"
           className="w-full border rounded-lg px-4 py-2"
+          value={form.age}
           onChange={(e) =>
             setForm({ ...form, age: e.target.value })
           }
@@ -73,6 +79,7 @@ export default function PatientDetailsClient({ searchParams }: Props) {
         <textarea
           placeholder="Health Issue"
           className="w-full border rounded-lg px-4 py-2"
+          value={form.issue}
           onChange={(e) =>
             setForm({ ...form, issue: e.target.value })
           }
@@ -80,6 +87,7 @@ export default function PatientDetailsClient({ searchParams }: Props) {
 
         <select
           className="w-full border rounded-lg px-4 py-2"
+          value={form.firstVisit}
           onChange={(e) =>
             setForm({ ...form, firstVisit: e.target.value })
           }

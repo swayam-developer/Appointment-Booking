@@ -8,6 +8,7 @@ import Footer from "@/components/common/Footer";
 import { SearchProvider } from "@/context/SearchContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BookingProvider } from "@/context/BookingContext";
 
 export default function DashboardLayout({
   children,
@@ -26,6 +27,7 @@ export default function DashboardLayout({
   return (
     <div className="min-h-screen flex bg-gray-50">
       <SearchProvider>
+        <BookingProvider>
         {/* Sidebar */}
         <Sidebar />
 
@@ -41,6 +43,7 @@ export default function DashboardLayout({
           {/* Footer */}
           <Footer />
         </div>
+        </BookingProvider>
       </SearchProvider>
     </div>
   );

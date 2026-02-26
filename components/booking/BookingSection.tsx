@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { useBooking } from "@/context/BookingContext";
 
 interface Props {
   doctorId: string;
-  doctorName:string;
-  specialization:string;
+  doctorName: string;
+  specialization: string;
   slots: string[];
   fee: number;
 }
@@ -22,13 +23,21 @@ export default function BookingSection({
   const router = useRouter();
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+  const { setBooking } = useBooking();
 
   const handleBook = () => {
     if (!selectedDate || !selectedSlot) return;
 
-   router.push(
-  `/dashboard/patient-details?doctorId=${doctorId}&doctorName=${doctorName}&specialization=${specialization}&date=${selectedDate}&slot=${selectedSlot}`
-);
+    setBooking({
+      doctorId,
+      doctorName,
+      specialization,
+      date: selectedDate,
+      slot: selectedSlot,
+      fee,
+    });
+
+    router.push(`/dashboard/patient-details`);
   };
 
   return (
@@ -37,9 +46,7 @@ export default function BookingSection({
 
       {/* Date Picker */}
       <div>
-        <label className="block text-sm font-medium mb-2">
-          Select Date
-        </label>
+        <label className="block text-sm font-medium mb-2">Select Date</label>
         <input
           type="date"
           value={selectedDate}
@@ -78,9 +85,7 @@ export default function BookingSection({
 
       {/* Footer */}
       <div className="flex justify-between items-center pt-4">
-        <span className="text-2xl font-semibold text-primary">
-          ₹{fee}
-        </span>
+        <span className="text-2xl font-semibold text-primary">₹{fee}</span>
 
         <Button
           onClick={handleBook}
