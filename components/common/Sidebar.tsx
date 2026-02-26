@@ -6,7 +6,6 @@ import {
   LayoutDashboard,
   UserRound,
   CalendarCheck,
-  Settings,
   Stethoscope,
 } from "lucide-react";
 
@@ -30,14 +29,14 @@ export default function Sidebar() {
       icon: CalendarCheck,
     },
     {
-      name: "Profile",
+      name: "My Profile",
       href: "/dashboard/profile",
       icon: UserRound,
     },
     {
-      name: "Settings",
-      href: "/dashboard/settings",
-      icon: Settings,
+      name: "Doctor Profile",
+      href: "/dashboard/doctor-profile",
+      icon: UserRound,
     },
   ];
 

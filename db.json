@@ -2,7 +2,7 @@
   "users": [],
   "doctors": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Dr. Anjali Mehta",
       "specialization": "Cardiologist",
       "experience": "10 years",
@@ -17,7 +17,7 @@
       "slots": ["10:00 AM", "11:30 AM", "4:00 PM"]
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Dr. Kumar Das",
       "specialization": "Dermatologist",
       "experience": "8 years",
@@ -32,7 +32,7 @@
       "slots": ["9:00 AM", "1:00 PM", "5:30 PM"]
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Dr. Rohan Kulkarni",
       "specialization": "Orthopedic",
       "experience": "12 years",
@@ -47,7 +47,7 @@
       "slots": ["10:30 AM", "3:00 PM", "6:00 PM"]
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Dr. Sneha Iyer",
       "specialization": "Pediatrician",
       "experience": "9 years",
@@ -62,7 +62,7 @@
       "slots": ["9:30 AM", "12:00 PM", "3:30 PM"]
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Dr. Vikram Singh",
       "specialization": "Neurologist",
       "experience": "15 years",
@@ -77,7 +77,7 @@
       "slots": ["11:00 AM", "2:00 PM", "6:30 PM"]
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Dr. Priyank Sharma",
       "specialization": "Gynecologist",
       "experience": "11 years",
@@ -92,7 +92,7 @@
       "slots": ["10:00 AM", "1:30 PM", "5:00 PM"]
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Dr. Arjun Rao",
       "specialization": "ENT Specialist",
       "experience": "7 years",
@@ -107,7 +107,7 @@
       "slots": ["9:00 AM", "2:00 PM", "6:00 PM"]
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Dr. Ella Fernandez",
       "specialization": "Psychiatrist",
       "experience": "13 years",
