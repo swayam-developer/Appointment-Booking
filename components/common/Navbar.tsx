@@ -25,9 +25,9 @@ export default function Navbar() {
   };
 
   return (
-    <div className="bg-white shadow px-6 py-4 flex items-center justify-between">
+    <div className="bg-gray-200 shadow px-6 py-4 flex items-center justify-between">
       {/* Left */}
-      <h1 className="font-semibold text-lg text-primary">
+      <h1 className="font-semibold text-lg text-gray-800 ">
         Welcome To Schedula
       </h1>
 
@@ -35,15 +35,15 @@ export default function Navbar() {
       <div className="w-1/3 relative">
         <Search
           size={18}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-700"
         />
         <input
           type="text"
           placeholder="Search doctors..."
           onChange={(e) => setSearch(e.target.value)}
           className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg 
-               focus:outline-none focus:ring-2 focus:ring-blue-500 
-               transition duration-200"
+               focus:outline-none focus:ring-1 focus:ring-gray-400 
+               transition duration-200 text-black bg-white placeholder-gray-600"
         />
       </div>
 
