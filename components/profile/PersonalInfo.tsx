@@ -4,7 +4,6 @@ import {
   User,
   HeartPulse,
   Activity,
-  FileText,
   AlertCircle,
   ShieldPlus,
   Heart,

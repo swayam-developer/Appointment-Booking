@@ -9,6 +9,7 @@ import { SearchProvider } from "@/context/SearchContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BookingProvider } from "@/context/BookingContext";
+import { PrescriptionProvider } from "@/context/PrescriptionContext";
 
 export default function DashboardLayout({
   children,
@@ -28,21 +29,23 @@ export default function DashboardLayout({
     <div className="min-h-screen flex bg-gray-50">
       <SearchProvider>
         <BookingProvider>
-        {/* Sidebar */}
-        <Sidebar />
+          <PrescriptionProvider>
+            {/* Sidebar */}
+            <Sidebar />
 
-        {/* Main Section */}
-        <div className="flex flex-col flex-1">
-          {/* Navbar */}
-          <Navbar />
+            {/* Main Section */}
+            <div className="flex flex-col flex-1">
+              {/* Navbar */}
+              <Navbar />
 
-          {/* Page Content */}
-          <main className="flex-1 p-6">{children}</main>
-          <ToastContainer position="top-right" autoClose={3000} />
+              {/* Page Content */}
+              <main className="flex-1 p-6">{children}</main>
+              <ToastContainer position="top-right" autoClose={3000} />
 
-          {/* Footer */}
-          <Footer />
-        </div>
+              {/* Footer */}
+              <Footer />
+            </div>
+          </PrescriptionProvider>
         </BookingProvider>
       </SearchProvider>
     </div>

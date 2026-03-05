@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  LayoutDashboard,
+  Home,
   UserRound,
   CalendarCheck,
   Stethoscope,
@@ -14,9 +14,9 @@ export default function Sidebar() {
 
   const menuItems = [
     {
-      name: "Dashboard",
+      name: "Home",
       href: "/dashboard",
-      icon: LayoutDashboard,
+      icon: Home,
     },
     {
       name: "Doctors",
@@ -31,11 +31,6 @@ export default function Sidebar() {
     {
       name: "My Profile",
       href: "/dashboard/profile",
-      icon: UserRound,
-    },
-    {
-      name: "Doctor Profile",
-      href: "/dashboard/doctor-profile",
       icon: UserRound,
     },
   ];

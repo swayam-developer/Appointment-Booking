@@ -10,7 +10,9 @@ export default function LoginForm() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>(
+    {},
+  );
 
   const validate = () => {
     const newErrors: { email?: string; password?: string } = {};
@@ -40,12 +42,9 @@ export default function LoginForm() {
 
   return (
     <div className="w-full max-w-md space-y-8">
-      
       {/* Heading */}
       <div>
-        <h2 className="text-3xl font-semibold text-blue-700">
-          Welcome Back
-        </h2>
+        <h2 className="text-3xl font-semibold text-blue-700">Welcome Back</h2>
         <p className="text-gray-500 mt-2">
           Sign in to continue booking appointments
         </p>
@@ -53,12 +52,9 @@ export default function LoginForm() {
 
       {/* Form Fields */}
       <div className="space-y-6">
-
         {/* Email */}
         <div>
-          <label className="text-sm font-medium">
-            Email
-          </label>
+          <label className="text-sm font-medium">Email</label>
           <Input
             placeholder="Enter your email"
             value={email}
@@ -72,9 +68,7 @@ export default function LoginForm() {
 
         {/* Password */}
         <div>
-          <label className="text-sm font-medium">
-            Password
-          </label>
+          <label className="text-sm font-medium">Password</label>
           <Input
             type="password"
             placeholder="Enter password"
@@ -104,6 +98,17 @@ export default function LoginForm() {
             Sign Up
           </a>
         </p>
+      </div>
+      <div className="text-center mt-4">
+        <div className="mt-6 border-t pt-6 text-center">
+          <p className="text-sm text-gray-500 mb-4">Are you a doctor?</p>
+          <a
+            href="/doctor/login"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-blue-200 bg-blue-50 text-blue-700 font-medium hover:bg-blue-100 hover:border-blue-300 transition"
+          >
+            🩺 Login as Doctor 
+          </a>
+        </div>
       </div>
     </div>
   );

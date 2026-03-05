@@ -61,7 +61,7 @@ export default function Navbar() {
           <p className="font-medium">Hi, {username}</p>
           <button
             onClick={handleLogout}
-            className="text-red-500 text-xs hover:underline"
+            className="text-red-500 text-sm hover:underline"
           >
             Logout
           </button>

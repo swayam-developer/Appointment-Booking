@@ -7,7 +7,7 @@ interface BookingData {
   doctorName: string;
   specialization: string;
   date: string;
-  slot: string;
+  time: string;
   fee: number;
 }
 

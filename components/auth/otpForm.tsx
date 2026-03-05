@@ -96,7 +96,7 @@ export default function OtpForm() {
           </button>
         ) : (
           <p className="text-gray-500">
-            Resend OTP in <span className="font-medium">{timer}s</span>
+            Resend OTP in <span className="font-medium text-blue-500">{timer}s</span>
           </p>
         )}
       </div>

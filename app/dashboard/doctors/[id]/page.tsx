@@ -81,8 +81,9 @@ export default async function DoctorDetailPage({ params }: Props) {
         doctorId={doctor.id.toString()}
         doctorName={doctor.name}
         specialization={doctor.specialization}
-        slots={doctor.slots || []}
+        time={doctor.slots || []}
         fee={doctor.consultationFee}
+        availability={doctor.availability}
       />
     </div>
   );

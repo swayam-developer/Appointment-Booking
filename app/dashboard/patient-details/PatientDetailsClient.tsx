@@ -13,6 +13,8 @@ export default function PatientDetailsClient() {
   const [form, setForm] = useState({
     name: "",
     age: "",
+    gender: "",
+    phone: "",
     issue: "",
     firstVisit: "yes",
   });
@@ -20,29 +22,47 @@ export default function PatientDetailsClient() {
   if (!booking) {
     return (
       <div className="p-6 text-center">
-        <h2 className="text-xl font-semibold">
-          No booking data found.
-        </h2>
+        {" "}
+        <h2 className="text-xl font-semibold">No booking data found. </h2>{" "}
       </div>
     );
   }
 
   const handleConfirm = () => {
-    if (!form.name || !form.age || !form.issue) {
+    if (!form.name || !form.age || !form.gender || !form.phone || !form.issue) {
       toast.error("Please fill all fields");
       return;
     }
 
     const appointment = {
-      ...booking,
-      name: form.name,
+      id: Date.now(),
+      doctorId: booking.doctorId || 1,
+      doctorName: booking.doctorName,
+      specialization: booking.specialization,
+
+      patientName: form.name,
       age: form.age,
-      issue: form.issue,
+      gender: form.gender,
+      phone: form.phone,
+
+      problem: form.issue,
       firstVisit: form.firstVisit,
-      status: "Confirmed",
+
+      date: booking.date,
+      time: booking.time,
+
+      status: "confirmed",
     };
 
-    localStorage.setItem("appointment", JSON.stringify(appointment));
+    const existingAppointments = JSON.parse(
+      localStorage.getItem("appointments") || "[]",
+    );
+
+    existingAppointments.push(appointment);
+
+    localStorage.setItem("appointments", JSON.stringify(existingAppointments));
+
+    window.dispatchEvent(new Event("appointmentUpdated"));
 
     toast.success("Appointment booked successfully!");
 
@@ -53,17 +73,15 @@ export default function PatientDetailsClient() {
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-6">
+      {" "}
       <h1 className="text-2xl font-semibold">Patient Details</h1>
-
       <div className="bg-white p-6 rounded-2xl shadow space-y-4">
         <input
           type="text"
           placeholder="Full Name"
           className="w-full border rounded-lg px-4 py-2"
           value={form.name}
-          onChange={(e) =>
-            setForm({ ...form, name: e.target.value })
-          }
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
 
         <input
@@ -71,26 +89,39 @@ export default function PatientDetailsClient() {
           placeholder="Age"
           className="w-full border rounded-lg px-4 py-2"
           value={form.age}
-          onChange={(e) =>
-            setForm({ ...form, age: e.target.value })
-          }
+          onChange={(e) => setForm({ ...form, age: e.target.value })}
+        />
+
+        <select
+          className="w-full border rounded-lg px-4 py-2"
+          value={form.gender}
+          onChange={(e) => setForm({ ...form, gender: e.target.value })}
+        >
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <input
+          type="tel"
+          placeholder="Phone Number"
+          className="w-full border rounded-lg px-4 py-2"
+          value={form.phone}
+          onChange={(e) => setForm({ ...form, phone: e.target.value })}
         />
 
         <textarea
-          placeholder="Health Issue"
+          placeholder="Describe your health issue"
           className="w-full border rounded-lg px-4 py-2"
           value={form.issue}
-          onChange={(e) =>
-            setForm({ ...form, issue: e.target.value })
-          }
+          onChange={(e) => setForm({ ...form, issue: e.target.value })}
         />
 
         <select
           className="w-full border rounded-lg px-4 py-2"
           value={form.firstVisit}
-          onChange={(e) =>
-            setForm({ ...form, firstVisit: e.target.value })
-          }
+          onChange={(e) => setForm({ ...form, firstVisit: e.target.value })}
         >
           <option value="yes">First Visit</option>
           <option value="no">Follow-up</option>
